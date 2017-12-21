@@ -8,10 +8,10 @@ from models.vanilla import alexnet
 FLAGS = tf.app.flags.FLAGS
 
 # Define os and dataset flags
-tf.app.flags.DEFINE_string('data_dir', '/home/christian/Data/ILSVRC/tfrecords/', 'Path to data directory')
+# tf.app.flags.DEFINE_string('data_dir', '/home/christian/Data/ILSVRC/tfrecords/', 'Path to data directory')
 tf.app.flags.DEFINE_string('train_dir', '/home/christian/AlexNet/datasets/tiny-imagenet-200/cached/train.tfrecords', 'Path to training data')
 tf.app.flags.DEFINE_string('val_dir', '/home/christian/AlexNet/datasets/tiny-imagenet-200/cached/test.tfrecords', 'Path to validation data')
-tf.app.flags.DEFINE_string('log_dir', '/home/christian/AlexNet/logs', 'Path to the log folder')
+# tf.app.flags.DEFINE_string('log_dir', '/home/christian/AlexNet/logs', 'Path to the log folder')
 tf.app.flags.DEFINE_string('trainlog_momentum_dir', '/home/christian/AlexNet/logs/train/train_momentum', 'Path to the training log folder')
 tf.app.flags.DEFINE_string('evallog_momentum_dir', '/home/christian/AlexNet/logs/eval/eval_momentum', 'Path to the evaluation log folder')
 tf.app.flags.DEFINE_string('trainlog_gradient_descent_dir', '/home/christian/AlexNet/logs/train/train_gradient_descent', 'Path to the training log folder')
