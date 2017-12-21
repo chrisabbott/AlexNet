@@ -203,5 +203,8 @@ ENV/
 # PyCharm
 .idea
 
+# Extracted Tiny ImageNet dataset files
+dataset/*.tfrecords
+
 datasets/tiny-imagenet-200
 
