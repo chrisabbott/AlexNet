@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 prepare-venv: clean
 	@echo "Preparing virtual environment..."
-	virtualenv -p python3.4 --verbose --prompt='(YOLO-project) ' env
+	virtualenv -p python3 --verbose --prompt='(YOLO-project) ' env
 	env/bin/pip install -r requirements.txt
 
 update-requirements:
