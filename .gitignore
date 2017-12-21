@@ -206,5 +206,5 @@ ENV/
 # Extracted Tiny ImageNet dataset files
 dataset/*.tfrecords
 
-datasets/tiny-imagenet-200
-
+# Artifcats from train.py
+logs/
