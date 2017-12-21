@@ -1,14 +1,11 @@
-import os
-import copy
-import numpy as np
 import tensorflow as tf
+import tensorflow.contrib.slim as slim
 
 from tools import utils
 from models.slim import model
 from models.vanilla import alexnet
 
 FLAGS = tf.app.flags.FLAGS
-slim = tf.contrib.slim
 
 # Define os and dataset flags
 tf.app.flags.DEFINE_string('data_dir', '/home/christian/Data/ILSVRC/tfrecords/', 'Path to data directory')
