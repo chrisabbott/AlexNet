@@ -1,0 +1,20 @@
+(1) TRAINING A TINY IMAGENET CLASSIFIER FROM SCRATCH
+
+To train a new classifier, "cd" into our submission
+directory and execute the following commands:
+
+make prepare-venv
+source env/bin/activate
+python train.py & 
+python evaluate.py &
+tensorboard --logdir=$(pwd)/logs
+
+Then, open TensorBoard in your browser to monitor the
+classifier's accuracy as it is being trained. You can
+also monitor loss, mean-squared error, and other metrics.
+
+------------------------------------------------------------
+
+(2) CONTINUE TRAINING OUR ALREADY-TRAINED CLASSIFIER
+
+As part of our submission, we included 
