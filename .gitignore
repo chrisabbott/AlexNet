@@ -200,5 +200,8 @@ ENV/
 # mypy
 .mypy_cache/
 
+# PyCharm
+.idea
+
 datasets/tiny-imagenet-200
 
