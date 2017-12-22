@@ -1,3 +1,4 @@
+import os
 import sys
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
@@ -7,20 +8,13 @@ from models.slim import model
 from models.vanilla import alexnet
 
 FLAGS = tf.app.flags.FLAGS
+cwd = os.path.dirname(os.path.realpath(__file__))
 
 # Define os and dataset flags
-tf.app.flags.DEFINE_string('train_dir', './dataset/train.tfrecords', 'Path to training data')
-tf.app.flags.DEFINE_string('val_dir', './dataset/test.tfrecords', 'Path to validation data')
-tf.app.flags.DEFINE_string('trainlog_momentum_dir', './logs/train/train_momentum', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_momentum_dir', './logs/eval/eval_momentum', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_gradient_descent_dir', './logs/train/train_gradient_descent', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_gradient_descent_dir', './logs/eval/eval_gradient_descent', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_adadelta_dir', './logs/train/train_adadelta', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_adadelta_dir', './logs/eval/eval_adadelta', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_adam_dir', './logs/train/train_adam', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_adam_dir', './logs/eval/eval_adam', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_rmsprop_dir', './logs/train/train_rmsprop', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_rmsprop_dir', './logs/eval/eval_rmsprop', 'Path to the evaluation log folder')
+tf.app.flags.DEFINE_string('train_dir', os.path.join(cwd, 'dataset/train.tfrecords'), 'Training data')
+tf.app.flags.DEFINE_string('val_dir', os.path.join(cwd, 'dataset/test.tfrecords'), 'Validation data')
+tf.app.flags.DEFINE_string('trainlog_dir', os.path.join(cwd, 'logs/train/'), 'Training logs')
+tf.app.flags.DEFINE_string('evallog_dir', os.path.join(cwd, 'logs/eval/'), 'Evaluation logs')
 
 # Define training flags
 tf.app.flags.DEFINE_float('initial_learning_rate', 0.1, 'Initial learning rate')
@@ -82,7 +76,7 @@ def train_momentum_cross_entropy():
 
         # Initialize training
         slim.learning.train(train_op,
-                            FLAGS.trainlog_momentum_dir,
+                            FLAGS.trainlog_dir,
                             number_of_steps=FLAGS.max_steps,
                             save_summaries_secs=30,
                             save_interval_secs=30,
@@ -282,15 +276,15 @@ def train_rmsprop_momentum_cross_entropy():
 
 if __name__ == '__main__':
     # TODO continue implementing this functionality
-    try:
-        logs_dir = sys.argv[1]
-    except IndexError:
-        logs_dir = './logs/'
-
-    tf.app.flags.DEFINE_string('log_dir', logs_dir, 'Path to the log folder')
+    # try:
+    #     logs_dir = sys.argv[1]
+    # except IndexError:
+    #     logs_dir = './logs/'
+    #
+    # tf.app.flags.DEFINE_string('log_dir', logs_dir, 'Path to the log folder')
 
     train_momentum_cross_entropy()
-    train_gradient_descent_cross_entropy()
-    train_adadelta_cross_entropy()
-    train_adam_cross_entropy()
-    train_rmsprop_momentum_cross_entropy()
+    # train_gradient_descent_cross_entropy()
+    # train_adadelta_cross_entropy()
+    # train_adam_cross_entropy()
+    # train_rmsprop_momentum_cross_entropy()

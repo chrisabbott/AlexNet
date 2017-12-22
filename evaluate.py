@@ -1,3 +1,4 @@
+import os
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 import tensorflow.contrib.metrics as metrics
@@ -7,22 +8,13 @@ from models.vanilla import alexnet
 from models.slim import model
 
 FLAGS = tf.app.flags.FLAGS
+cwd = os.path.dirname(os.path.realpath(__file__))
 
 # Define os and dataset flags
-tf.app.flags.DEFINE_string('train_dir', './dataset/train.tfrecords', 'Path to training data')
-tf.app.flags.DEFINE_string('val_dir', './dataset/test.tfrecords', 'Path to validation data')
-tf.app.flags.DEFINE_string('trainlog_dir', './logs/train', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_dir', './logs/eval', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_momentum_dir', './logs/train/train_momentum/checkpoint.ckpt', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_momentum_dir', './logs/eval/eval_momentum', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_gradient_descent_dir', './logs/train/train_gradient_descent/checkpoint.ckpt', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_gradient_descent_dir', './logs/eval/eval_gradient_descent', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_adadelta_dir', './logs/train/train_adadelta/checkpoint.ckpt', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_adadelta_dir', './logs/eval/eval_adadelta', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_adam_dir', './logs/train/train_adam/checkpoint.ckpt', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_adam_dir', './logs/eval/eval_adam', 'Path to the evaluation log folder')
-tf.app.flags.DEFINE_string('trainlog_rmsprop_dir', './logs/train/train_rmsprop/checkpoint.ckpt', 'Path to the training log folder')
-tf.app.flags.DEFINE_string('evallog_rmsprop_dir', './logs/eval/eval_rmsprop', 'Path to the evaluation log folder')
+tf.app.flags.DEFINE_string('train_dir', os.path.join(cwd, 'dataset/train.tfrecords'), 'Training data')
+tf.app.flags.DEFINE_string('val_dir', os.path.join(cwd, 'dataset/test.tfrecords'), 'Validation data')
+tf.app.flags.DEFINE_string('trainlog_dir', os.path.join(cwd, 'logs/train/'), 'Training logs')
+tf.app.flags.DEFINE_string('evallog_dir', os.path.join(cwd, 'logs/eval/'), 'Evaluation logs')
 tf.app.flags.DEFINE_integer('num_classes', 200, 'Number of classes in Tiny ImageNet')
 
 # Define training flags
