@@ -48,11 +48,11 @@ def evaluate():
                                           flip=False)
 
         predictions = alexnet.AlexNet(images, batch_size=FLAGS.batch_size).model
-        prediction = tf.to_int64(tf.argmax(predictions, 1))
+        prediction = tf.to_int64(tf.argmax(predictions, 1))  # Returns index of largest
 
         mse_op = metrics.streaming_mean_squared_error(prediction, labels)
         rmse_op = metrics.streaming_root_mean_squared_error(prediction, labels)
-        accuracy_op = tf.metrics.mean(tf.nn.in_top_k(predictions=predictions, targets=labels, k=50))
+        accuracy_op = metrics.streaming_accuracy(prediction, labels)
         precision_op = metrics.streaming_precision(prediction, labels)
 
         metrics_to_values, metrics_to_updates = metrics.aggregate_metric_map({
